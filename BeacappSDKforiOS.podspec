@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/JMASystems/beacapp-sdk-ios.git", :tag => "0.9.0" }
   s.public_header_files = "BeacappSDKforiOS/Header/*.h"
-  s.source_files =  'BeacappSDKforiOS/Header/*.h’
+  s.source_files =  'BeacappSDKforiOS/Header/*.h'
 
   s.preserve_paths = "BeacappSDKforiOS/staticLib/libBeacappSDKforiOSv1.a"
   s.vendored_libraries = "BeacappSDKforiOS/staticLib/libBeacappSDKforiOSv1.a"
@@ -26,7 +26,8 @@ Pod::Spec.new do |s|
   s.library   = "BeacappSDKforiOSv1"
   
   s.requires_arc = true
-  s.xcconfig =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/BeacappSDKforiOS/staticLib"','HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/BeacappSDKforiOS"' }
+
+  s.xcconfig =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/BeacappSDKforiOS/staticLib"', 'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/BeacappSDKforiOS"'}
 
   s.dependency "AWSiOSSDKv2/Kinesis", '2.0.12'
   s.dependency "AWSiOSSDKv2/DynamoDB", '2.0.12'
