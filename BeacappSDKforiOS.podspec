@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   
   s.requires_arc = true
 
-  s.xcconfig =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/BeacappSDKforiOS/staticLib"', 'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/BeacappSDKforiOS"'}
+  s.xcconfig =  { 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/BeacappSDKforiOS/BeacappSDKforiOS/staticLib"', 'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/BeacappSDKforiOS"'}
 
   s.dependency "AWSiOSSDKv2/Kinesis", '2.0.12'
   s.dependency "AWSiOSSDKv2/DynamoDB", '2.0.12'
