@@ -19,11 +19,11 @@ Pod::Spec.new do |s|
   s.public_header_files = "BeacappSDKforiOS/Header/*.h"
   s.source_files =  'BeacappSDKforiOS/Header/*.h'
 
-  s.preserve_paths = "BeacappSDKforiOS/staticLib/libBeacappSDKforiOSv1.a"
-  s.vendored_libraries = "BeacappSDKforiOS/staticLib/libBeacappSDKforiOSv1.a"
+  s.preserve_paths = "BeacappSDKforiOS/staticLib/libBeacappSDKforiOS.a"
+  s.vendored_libraries = "BeacappSDKforiOS/staticLib/libBeacappSDKforiOS.a"
 
   s.frameworks = "CoreLocation", "CoreBluetooth","SystemConfiguration"
-  s.library   = "BeacappSDKforiOSv1"
+  s.library   = "BeacappSDKforiOS"
   
   s.requires_arc = true
 
