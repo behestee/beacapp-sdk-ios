@@ -16,6 +16,7 @@ Beacappで登録したコンテンツをiOSで利用するためのSDKです。
 
 ## Getting Started
 1. ヘッダーをインポートします
+
 		#import ＜BeacappSDKforiOS/JBCPCore.h>
 
 2. JBCPMangaerを生成してください
@@ -23,14 +24,18 @@ Beacappで登録したコンテンツをiOSで利用するためのSDKです。
 		JBCPManager *manager = [JBCPMangaer sharedManager];
 
 3. SDKのアクティベートを実行してください
+
 		NSError *activateError = nil;
 		BOOL activateResult = [manager initializeWithRequestToken:@"yourRequestToken" secretKey:@"yourSecretKey" options:nil error:&activateError]
+		
 4. 最新のイベントデータをCMSから取得します
+
 		NSError *eventError = nil;
 		BOOL result = [manager startUpdateEvents:&eventError];
 		
 	イベントの取得を開始時に以下のデリゲートが呼ばれます。
 	YESを返すと、イベントデータの取得を実行します。NOを返すとイベントデータの取得を行わず処理を終了します。
+		
 		- (BOOL)manager:(JBCPManager *)manager shouldUpdateEvents:(NSDictionary *)info{
 			if (![info[@"alreadyNewest"]boolValue]) {
         		return YES;
@@ -51,10 +56,12 @@ Beacappで登録したコンテンツをiOSで利用するためのSDKです。
 		}
 
 4. ビーコンの監視を開始します。
+
 		NSError *scanError = nil;
 		BOOL result = [manager startScan:&scanError];
 		
 5. CMSで設定したイベントが検知されると下記のデリゲートが呼ばれます。
+
 		- (void)manager:(JBCPManager *)manager fireEvent:(NSDictionary *)event{
 			// do anything
 		}
@@ -70,6 +77,7 @@ Beacappで登録したコンテンツをiOSで利用するためのSDKです。
 
 4. JBCPManagerDelegateはメインスレッドではない場合があります。
 デリゲートメソッド内にてメインスレッドで処理を行う必要がある場合は、メインスレッドかどうかの判定を行う必要があります。
+
 		if ([NSThread isMainThread]){
 			// main thread
 		}else{
