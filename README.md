@@ -93,6 +93,8 @@ Beacappで登録したコンテンツをiOSで利用するためのSDKです。
 
 6. BeacappSDKforiOSではビーコンの検知を行う為、内部でCLLocatinManager, CBPeripheralManagerを使用しています.
 
+## Documents
+See above [documents](Documents/ios-api-reference.md)
 
 ## Author
 
