@@ -81,15 +81,12 @@ JBCPManager のインスタンス
 
 		- (void)manager:(JBCPManager *)manager fireEvent:(NSDictionary *)event
 
-ビーコンを受信し、条件に合致すると、このdelegateメソッドがコールされる。  
+ビーコンを受信し、条件に合致すると、このdelegateメソッドがコールされる。
 event に受信したビーコン情報、トリガーの条件、実行すべきアクションを辞書形式で格納する。
-event に格納されるデータをJSON形式で表すと以下のイメージである。
-
-
-
+event に格納されるデータのうち、Beacapp Web管理コンソールで登録した**連携させるコンテンツ**をJSON形式で表すと以下のイメージである。
 
 - action_data
- 実行すべきアクションを格納する。
+ 実行すべきアクション（連携させるコンテンツ）の情報を格納する。
  key, value 形式の辞書型とする。
  key には必ず "action" キーが存在し、その値にアクションの種別を格納する。
 
@@ -97,51 +94,50 @@ event に格納されるデータをJSON形式で表すと以下のイメージ�
 
   |値           |説明                  |
   |-------------|----------------------|
-  |notification |ローカル通知          |
-  |open-url     |Webブラウザ通知       |
-  |url-scheme   |URLスキーム通知       |
-  |custom       |カスタムデータを表す  |
+  |jbcp_open_image |画像がコンテンツとして設定されている          |
+  |jbcp_open_url     |Web URLがコンテンツとして設定されている       |
+  |jbco_open_text   |テキスト情報がコンテンツとして設定されている       |
+  |jbcp_custom_key_value       |カスタムデータが設定されている  |
 
-  - notification の場合
-    キー text の値に表示する文言が格納される
+  - jbcp_open_image の場合
 
-    `````````````````````````````````````````````````````
-    "action_data" : {
-      "action" : "notification",
-      "text" : "いつもご来店ありがとうございます。ただいまタイムサービス中です！"
-    }
-    `````````````````````````````````````````````````````
+    キー url の値に表示する画像が格納される
 
-  - open-url の場合
+	    "action_data" : {
+    	  "action" : "jbcp_open_image",
+      	"url" : "http://some-server/some-path/some.png"
+    	}
+
+  - jbcp_open_url の場合
+
     キー url の値に Web ページに表示するURLを格納
 
-    ````````````````````````````````````````````````````````
-    "action_data" : {
-      "action" : "open-url",
-      "url" : "http://some-server/some-path/?some-query=foo"
-    }
-    ````````````````````````````````````````````````````````
+	    "action_data" : {
+    	  "action" : "jbcp_open_url",
+      	"url" : "http://some-server/some-path/?some-query=foo"
+    	}
 
-  - url-scheme の場合
-    キー url の値に URLスキームを実行するための URL を文字列で定義
+  - jbco_open_text の場合
 
-    ````````````````````````````````````````````````````````
-    "action_data" : {
-      "action" : "url-scheme",
-      "url" : "mailto:someone@some-company.com?subject=test mail&body=hello world"
-    }
-    ````````````````````````````````````````````````````````
+    キー text の値に テキスト情報 を文字列で定義
 
-  - custom の場合
-    CMSで登録した任意のキー、値で構成される
+	    "action_data" : {
+    	  "action" : "jbco_open_text",
+      	"text" : "hello beacapp world"
+   	 }
 
-    ````````````````````````````````````````````````````````
-    "action_data" : {
-      "action" : "custom",
-      "custom-key1" : "custom-value1",
-      "custom-key2" : "custom-value2"
-    }
-    ````````````````````````````````````````````````````````
+  - jbcp_custom_key_value の場合
+
+  	Beacapp Web管理コンソールで登録した任意のキー、値で構成される
+	Beacapp Web管理コンソールで登録した任意のキー、値は**key_values**キー内に格納されている
+
+	    "action_data" : {
+    	  "action" : "jbcp_custom_key_value",
+		  "key_values" : {
+		  	"some_key" : "some_value",
+			  "some_key2" : "some_value2"
+		  }
+   	 }
 
 
 #### パラメータ
