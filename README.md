@@ -17,18 +17,24 @@ Beacappで登録したコンテンツをiOSで利用するためのSDKです。
 ## Getting Started
 1. ヘッダーをインポートします
 
-		#import ＜BeacappSDKforiOS/JBCPCore.h>
+		#import <BeacappSDKforiOS/JBCPCore.h>
 
-2. JBCPMangaerを生成してください
+2. Delegateを採用します（以下は、UIViewControllerに設定する場合の例）
 
-		JBCPManager *manager = [JBCPMangaer sharedManager];
+		@interface ViewController : UIViewController<JBCPManagerDelegate>
 
-3. SDKのアクティベートを実行してください
+
+3. JBCPMangaerを生成してください
+
+		JBCPManager *manager = [JBCPManager sharedManager];
+		manager.delegate = self;
+
+4. SDKのアクティベートを実行してください
 
 		NSError *activateError = nil;
-		BOOL activateResult = [manager initializeWithRequestToken:@"yourRequestToken" secretKey:@"yourSecretKey" options:nil error:&activateError]
+		BOOL activateResult = [manager initializeWithRequestToken:@"yourRequestToken" secretKey:@"yourSecretKey" options:nil error:&activateError];
 		
-4. 最新のイベントデータをCMSから取得します
+5. 最新のイベントデータをCMSから取得します
 
 		NSError *eventError = nil;
 		BOOL result = [manager startUpdateEvents:&eventError];
@@ -55,12 +61,12 @@ Beacappで登録したコンテンツをiOSで利用するためのSDKです。
 			}
 		}
 
-4. ビーコンの監視を開始します。
+6. ビーコンの監視を開始します。
 
 		NSError *scanError = nil;
 		BOOL result = [manager startScan:&scanError];
 		
-5. CMSで設定したイベントが検知されると下記のデリゲートが呼ばれます。
+7. CMSで設定したイベントが検知されると下記のデリゲートが呼ばれます。
 
 		- (void)manager:(JBCPManager *)manager fireEvent:(NSDictionary *)event{
 			// do anything
