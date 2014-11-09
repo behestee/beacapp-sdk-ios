@@ -118,6 +118,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 7. iOS8でBeacappSDKforiOSを利用する場合
 	iOS8から位置情報サービスを利用するための実行許可の方式が変更となります。
 	iOSアプリケーションのinfo.plistに以下のキーを追加し、アプリケーションとして必要な説明文を追記してください。
+
 	| キー名　　|
 	|---------------|
 	|NSLocationAlwaysUsageDescription|
