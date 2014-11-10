@@ -233,7 +233,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 
 ## ドキュメント
-各種APIのドキュメントなどは[こちら](Documents/ios-api-reference.md)　です。
+各種APIのドキュメントなどは[こちら](Documents/ios-api-reference.md)です。
 
 ## 製作者
 
@@ -242,10 +242,13 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 ## ライセンス
 
-BeacappSDKforiOS is available under xxxx
+BeacappSDKforiOSを利用するためには、Beacappの利用規約に同意する必要があります。
+BeacappSDKforiOSをいかなる方法を以ってダウンロードした場合、Beacappの利用規約に同意しているものとみなします。
+Beacappのご利用申し込みおよび利用規約の同意は[こちら](https://cms.beacapp.com/signup/index/)から可能です。
 
 ## その他
 BeacappSDKforiOSでは、[Version2 of AWS SDK for iOS](https://github.com/aws/aws-sdk-ios)が必要となります。
+Version2 of AWS SDK for iOSは　Apache 2.0ライセンスとなります。
 
 
 
