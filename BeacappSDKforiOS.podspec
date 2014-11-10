@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BeacappSDKforiOS"
-  s.version      = "0.9.3"
+  s.version      = "0.9.4"
   s.summary      = "iOS Library for Beacapp"
 
   s.homepage     = "http://www.beacapp.com"
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.author       = { "JMA Systems Corp.," => "Akira_Hayakawa@jmas.co.jp" }
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/JMASystems/beacapp-sdk-ios.git", :tag => "0.9.3" }
+  s.source       = { :git => "https://github.com/JMASystems/beacapp-sdk-ios.git", :tag => "0.9.4" }
   s.public_header_files = "BeacappSDKforiOS/Header/*.h"
   s.source_files =  'BeacappSDKforiOS/Header/*.h'
 
