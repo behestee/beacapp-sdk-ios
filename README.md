@@ -237,7 +237,6 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 ## 製作者
 
-Beacapp Dev Team
 - jena co. ltd.
 - JMAS Systems Corp,.
 
@@ -245,7 +244,8 @@ Beacapp Dev Team
 
 BeacappSDKforiOS is available under xxxx
 
-
+## その他
+BeacappSDKforiOSでは、[Version2 of AWS SDK for iOS](https://github.com/aws/aws-sdk-ios)が必要となります。
 
 
 
