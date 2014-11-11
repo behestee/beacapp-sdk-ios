@@ -247,9 +247,17 @@ BeacappSDKforiOSをいかなる方法を以ってダウンロードした場合�
 Beacappのご利用申し込みおよび利用規約の同意は[こちら](https://cms.beacapp.com/signup/index/)から可能です。
 
 ## その他
-BeacappSDKforiOSでは、[Version2 of AWS SDK for iOS](https://github.com/aws/aws-sdk-ios)が必要となります。
-Version2 of AWS SDK for iOSは　Apache 2.0ライセンスとなります。
 
+- BeacappSDKforiOSでは、[Version2 of AWS SDK for iOS](https://github.com/aws/aws-sdk-ios)が必要となります。
 
+    Version2 of AWS SDK for iOSは　Apache 2.0ライセンスとなります。
+	Version2 of AWS SDK for iOS
+    Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+    [https://github.com/aws/aws-sdk-ios/blob/master/LICENSE](https://github.com/aws/aws-sdk-ios/blob/master/LICENSE)
 
+- BeacappSDKforiOSでは、[FMDB](https://github.com/ccgus/fmdb)が必要となります。
 
+    FMDB
+	Copyright (c) 2008-2014 Flying Meat Inc.
+    [https://github.com/ccgus/fmdb/blob/master/LICENSE.txt](https://github.com/ccgus/fmdb/blob/master/LICENSE.txt)
+(https://github.com/ccgus/fmdb/blob/master/LICENSE.txt)
