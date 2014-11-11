@@ -1,8 +1,8 @@
 //
 //  JBCPManagerDelegate.h
-//  BeacappSDKforiOS
+//  BeacappSDKforiOS version1.0.0
 //
-//  Created by Akira Hayakawa on 2014/08/08.
+//  Created by Akira Hayakawa on 2014/11/11.
 //  Copyright (c) 2014年 JMA Systems Corp. All rights reserved.
 //
 
