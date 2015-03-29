@@ -183,39 +183,39 @@ BeacappSDKforiOSの主な機能は以下の通りです。
         		if (updateEventRet) {
          		   // OK update start
         		}else{
-         	   	// NG update can't start
+         	   	   // NG update can't start
         		}
     		}
 		}
 
 		#pragma mark JBCPManagerDelegate
 		-(BOOL)manager:(JBCPManager *)manager shouldUpdateEvents:(NSDictionary *)info{
-    		if (![info[@"alreadyNewest"]boolValue]) {
-       		 return YES;
-    		}else{
-    		    return NO;
-    		}
-    		return YES;
+    		   if (![info[@"alreadyNewest"]boolValue]) {
+       		      return YES;
+    		   }else{
+    		      return NO;
+    		   }
+    		   return YES;
 		}
 
 		-(void)manager:(JBCPManager *)manager didFinishUpdateEvents:(NSError *)error{
 		    if (!error) {
         		NSError *startError = nil;
-        		if (![self.jbcpmanager startScan:&startError]) {
+        		if ([self.jbcpmanager startScan:&startError]) {
         		}else{
          		   NSLog(@"error %@",startError);
         		}
-    		}else{
-       		 NSLog(@"error %@",error);
-    		}
+    		   }else{
+       		      NSLog(@"error %@",error);
+    		   }
 		}
 		
 		-(void)manager:(JBCPManager *)manager fireEvent:(NSDictionary *)event
 		{
-	        	if ([NSThread isMainThread]) {
-    	    	    // 処理
-        		    [self myBeaconEventUIShow:event[@"action_data"]];
-    	    	} else {
+	           if ([NSThread isMainThread]) {
+    	    	      // 処理
+        	      [self myBeaconEventUIShow:event[@"action_data"]];
+    	    	   } else {
 	            	dispatch_sync (
                 	           	dispatch_get_main_queue(),
                     	       	^{
@@ -223,7 +223,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
                         	    	   [self myBeaconEventUIShow:event[@"action_data"]];
 	                	           }
     	        	               );
-        		}
+        	   }
 		}
 
 		-(void)myBeaconEventUIShow:(NSDictionary*)action_data{
