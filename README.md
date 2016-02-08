@@ -1,4 +1,4 @@
-# Beacapp SDK for iOS Version 1.1.0
+# Beacapp SDK for iOS Version 1.2.0
 ## はじめに
 [Beacapp](http://www.beacapp.com)で登録したコンテンツをiOSで利用するためのSDKです。
 
@@ -28,6 +28,8 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 ## SDKの導入　（ [CocoaPods](http://cocoapods.org)　を利用する）
 **Podfile**　に下記の一行を追加するだけでインストール可能です:
 
+バージョン1.2.0では、cocoapods 0.38.2 の利用をお願い致します。
+
     pod "BeacappSDKforiOS"
 
 ## SDKの使い方
@@ -49,15 +51,15 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 		NSError *activateError = nil;
 		BOOL activateResult = [manager initializeWithRequestToken:@"yourRequestToken" secretKey:@"yourSecretKey" options:nil error:&activateError];
-		
+
 5. 最新のイベントデータをCMSから取得します
 
 		NSError *eventError = nil;
 		BOOL result = [manager startUpdateEvents:&eventError];
-		
+
 	イベントの取得を開始時に以下のデリゲートが呼ばれます。
 	YESを返すと、イベントデータの取得を実行します。NOを返すとイベントデータの取得を行わず処理を終了します。
-		
+
 		- (BOOL)manager:(JBCPManager *)manager shouldUpdateEvents:(NSDictionary *)info{
 			if (![info[@"alreadyNewest"]boolValue]) {
         		return YES;
@@ -81,7 +83,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 		NSError *scanError = nil;
 		BOOL result = [manager startScan:&scanError];
-		
+
 7. CMSで設定したイベントが検知されると下記のデリゲートが呼ばれます。
 
 		- (void)manager:(JBCPManager *)manager fireEvent:(NSDictionary *)event{
@@ -122,26 +124,26 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 	| キー名　　|
 	|---------------|
 	|NSLocationAlwaysUsageDescription|
-	
+
 	** BeacappSDKfoiOSでは 位置情報サービスの利用許可種類としてWhenInUseを推奨しています **
 
 8. manager:fireEvent: のイベント情報ハンドリング方法サンプル
 	イベントが発火した際に、BeacappSDKforiOSからアプリケーション側に通知されるデリゲートメソッドにおけるイベント情報のハンドリング方法のサンプルを示します。
 	デリゲートのパラメーターとして渡されるfireEventのNSDictionary中にCMSで設定したコンテンツ情報が含まれています。
-	
+
 	(NSDictionary*)eventから　コンテンツ情報を取得する方法
-		
+
 		NSDictionary *actionContentDic = event[@"action_data"];
-	
+
 	もしくは
-		
+
 		NSDictionary *actionContentDic = [event objectForKey:@"action_data"];
-		
+
 	これでCMSで設定されたコンテンツの種類とその内容が含まれているNSDictionaryオブジェクトを取得することができます。
 	actionContentDicオブジェクトからさらにCMSで設定されているコンテンツの種類と、内容をそれぞれ取得する方法は下記のようになります。
-	
+
 		NSString *type = actionContentDic[@"action"];
-		
+
 		// type　が URLもしくはimageの場合は、urlキーでコンテンツの内容を取得することができます。
 		if ([type isEqualToString:@"jbcp_open_url"] || [type isEqualToString:@"jbcp_open_image"]){
 			NSString *contentUrl = actionContentDic[@"url"];
@@ -158,25 +160,25 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 9. サンプルコード
 	BeacappSDKforiOSの一般的な処理の流れとしてのサンプルコードです。
-	
+
 		@interface ViewController ()
 		<JBCPManagerDelegate>
 		@property (nonatomic, weak) JBCPManager *jbcpmanager;
 		@end
 		@implementation ViewController
-		
+
 		-(void)viewDidLoad{
 			[super viewDidLoad];
 			// YourCode
 		}
-		
+
 		-(void)viewWillAppear:(BOOL)animated{
     		[super viewWillAppear:animated];
 
 	    	NSError *error = nil;
     		self.jbcpmanager = [JBCPManager sharedManager];
 			self.jbcpmanager.delegate = self;
-		
+
 			BOOL initRet = [self.jbcpmanager initializeWithRequestToken:@"yourRequestToken" secretKey:@"yourSecretKey" options:nil error:&error];
     		if (initRet) {
         		BOOL updateEventRet = [self.jbcpmanager startUpdateEvents:&error];
@@ -209,7 +211,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
        		      NSLog(@"error %@",error);
     		   }
 		}
-		
+
 		-(void)manager:(JBCPManager *)manager fireEvent:(NSDictionary *)event
 		{
 	           if ([NSThread isMainThread]) {

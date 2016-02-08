@@ -14,8 +14,8 @@
     - manager:shouldUpdateEvents:
     - manager:didFinishUpdateEvents:
     - manager:fireEvent:
-	- manager:didUpdateMonitoringStatus:peripheralState:
-	- manager:didFailWithError:
+    - manager:didUpdateMonitoringStatus:peripheralState:
+    - manager:didFailWithError:
 
 ##メソッド
 
@@ -179,12 +179,3 @@ JBCPManagerのインスタンス
 
 - error
 エラーが発生した場合、詳細情報のNSErrorオブジェクトを格納する。(CLError）
-
-
-
-
-
-
-
-
-

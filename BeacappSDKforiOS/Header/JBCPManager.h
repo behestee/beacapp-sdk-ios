@@ -1,9 +1,10 @@
 //
 //  JBCPManager.h
-//  BeacappSDKforiOS version1.0.0
+//  BeacappSDKforiOS version1.2.0
 //
 //  Created by Akira Hayakawa on 2014/11/11.
-//  Copyright (c) 2014年 JMA Systems Corp. All rights reserved.
+//  Update by Akira Hayakawa on 2016/02/05
+//  Copyright (c) 2015年 JMA Systems Corp. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -132,5 +133,37 @@
  *  @return 消去の成功可否
  */
 -(BOOL)clearActivationData;
+
+/**
+ *  ログのカスタム領域に追加する文字列を設定する。
+ *  valueには下記のチェックを行う。
+ *  文字列がSJISの範囲内であること。 
+ *  制御文字(=<>/!"#$%&'()-^~|[]{}`@*:;_/?><)が使用されていないこと。
+ *  また、UTF8エンコードにおいて1000バイト以内であること。
+ *  エラーの場合はerror変数にNSErrorオブジェクトを格納する。
+ *
+ *  @param value カスタム領域に追加する文字列を指定する。
+ *  @param error エラーが発生した場合、詳細情報の NSError オブジェクトを格納する。成功した場合は nil が格納される。
+ *
+ *  @return YES:成功 NO:失敗
+ */
+- (BOOL)setAdditionalLog:(NSString *)value error:(NSError **)error;
+
+/**
+ *  ログのカスタム領域に追加する文字列を設定しログ出力を行う。
+ *  ログのtypeは256で出力する。
+ *  valueには下記のチェックを行う。
+ *  文字列がSJISの範囲内であること。
+ *  制御文字(<>!"#$%&'()-^~|[]{}`@*:;\_?)が使用されていないこと。
+ *  また、UTF8エンコードにおいて1000バイト以内であること。
+ *  エラーの場合はerror変数にNSErrorオブジェクトを格納する。
+ *  前回customLogが呼び出されてから1秒以上経過していること。
+ *
+ *  @param value カスタム領域に追加する文字列を指定する。
+ *  @param error エラーが発生した場合、詳細情報の NSError オブジェクトを格納する。成功した場合は nil が格納される。
+ *
+ *  @return YES:成功 NO:失敗
+ */
+- (BOOL)customLog:(NSString *)value error:(NSError **)error;
 
 @end

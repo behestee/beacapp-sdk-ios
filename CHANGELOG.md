@@ -1,4 +1,10 @@
 # BeacappSDKforiOS CHANGELOG
+## 1.2.0 (February 5, 2016)
+Features:
+- カスタムログ送信機能
+- ログへの任意情報付与機能
+- 以下の不具合修正
+  - 成り済まし検知オフ設定時に、位置情報を送信していなかった問題を修正
 
 ## 1.1.0 (April 28, 2015)
 Features:
