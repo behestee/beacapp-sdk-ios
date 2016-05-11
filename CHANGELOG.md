@@ -1,4 +1,14 @@
 # BeacappSDKforiOS CHANGELOG
+## 1.3.0 (May 11, 2016)
+Features:
+- [AWS SDK iOS Version 2.3.6](https://github.com/aws/aws-sdk-ios/tree/2.3.6)への対応
+これにより、CocoaPods 0.39.0での利用が可能
+- ログ情報に現在位置情報が取得できている場合をこれを定常的に付与
+- BETA提供用のAPIを公開
+  - ビーコンのレンジングコールバック
+  - イベント発火確認のための検知間隔の設定
+- Swiftからの利用のための[_Nullable syntax](https://developer.apple.com/swift/blog/?id=25)の適用
+
 ## 1.2.0 (February 5, 2016)
 Features:
 - カスタムログ送信機能

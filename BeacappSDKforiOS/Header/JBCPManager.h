@@ -1,17 +1,35 @@
 //
 //  JBCPManager.h
-//  BeacappSDKforiOS version1.2.0
+//  BeacappSDKforiOS version1.3.0
 //
 //  Created by Akira Hayakawa on 2014/11/11.
-//  Update by Akira Hayakawa on 2016/02/05
-//  Copyright (c) 2015年 JMA Systems Corp. All rights reserved.
+//  Update by Akira Hayakawa on 2016/05/11
+//  Copyright (c) 2016年 JMA Systems Corp. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "JBCPManagerDelegate.h"
 #import "JBCPError.h"
+@class AWSTask;
 
-@class BFTask;
+/**
+ *  !!! BETA !!!
+ *  ビーコンイベント検知間隔の設定
+ */
+typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
+    /**
+     *  おおよそ2秒間隔でイベントの検知を実行する
+     */
+    JBCPEventScheduleFast,
+    /**
+     *  おおよそ5秒間隔でイベントの検知を実行する
+     */
+    JBCPEventScheduleDefault,
+    /**
+     *  おおよそ10秒間隔でイベントの検知を実行する
+     */
+    JBCPEventScheduleLong,
+};
 
 @interface JBCPManager : NSObject
 
@@ -20,7 +38,7 @@
  *
  *  @discussion デリゲートオブジェクトを設定すると、JBCPManagerDelegateプロトコルのイベントをコールバックします.
  */
-@property (weak, nonatomic) id <JBCPManagerDelegate> delegate;
+@property (weak, nonatomic) _Nullable id <JBCPManagerDelegate> delegate;
 /**
  *  @property verboseMode
  *
@@ -40,7 +58,7 @@
  *
  *  @return 生成に成功した場合はシングルトンオブジェクトを返す.
  */
-+(JBCPManager*)sharedManager;
++(JBCPManager * _Nonnull)sharedManager;
 
 /**
  *  SDKの初期化をおこなう。
@@ -56,7 +74,7 @@
  *
  *  @return 成功した場合は YESを返す。
  */
--(BOOL)initializeWithRequestToken:(NSString*)requestToken secretKey:(NSString*)secretKey options:(NSDictionary*)options error:(NSError**)error;
+-(BOOL)initializeWithRequestToken:(NSString * _Nonnull)requestToken secretKey:(NSString * _Nonnull)secretKey options:(NSDictionary * _Nullable)options error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 
 
@@ -74,11 +92,11 @@
  *
  *  @return YES:成功 NO:失敗
  */
-- (BOOL)startUpdateEvents:(NSError **)error;
+- (BOOL)startUpdateEvents:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 
 /**
- *  !!! version 1.0では利用不可 !!!
+ *  !!! version 1.3では利用不可 !!!
  *  コンテンツデータの更新を開始する。
  *  コンテンツデータには、SDKで利用する画像、動画などが格納される。
  *  delegate がセットされていない場合エラー終了する。 更新処理の進捗と完了通知は delegate にセットされた JBCPManagerDelegate を実装したクラスへコールバックされる。
@@ -90,18 +108,31 @@
  *
  *  @return YES:成功 NO:失敗
  */
-- (BOOL)startUpdateContents:(NSError **)error __attribute__((unavailable("startUpdateContents: is unavailable in Version 1.0")));
+- (BOOL)startUpdateContents:(NSError * _Nullable __autoreleasing * _Nullable)error __attribute__((unavailable("startUpdateContents: is unavailable in This Version")));
 
 
 /**
- *  iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
+ *  iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドスレッドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
  *  iBeaconの監視は、UUIDごとに実行される。iOSの制約上、監視すべきUUIDが20個以上の場合はこれを実行することができない。
  *
  *  @param error エラーが発生した場合、詳細情報の NSError オブジェクトを格納する。成功した場合は nil が格納される。
  *
  *  @return YES:成功 NO:失敗
  */
-- (BOOL)startScan:(NSError **)error;
+- (BOOL)startScan:(NSError * _Nullable __autoreleasing * _Nullable)error;
+
+/**
+ *  !!! BETA !!!
+ *  iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドスレッドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
+ *  iBeaconの監視は、UUIDごとに実行される。iOSの制約上、監視すべきUUIDが20個以上の場合はこれを実行することができない。
+ *  すでにスキャンが開始されている場合は”スキャンとイベント発生確認の間隔”の変更は実行されない。変更する場合は一度 - (BOOL)stopScan:(NSError * _Nullable __autoreleasing * _Nullable)error を成功させる必要がある。
+ *
+ *  @param schedule スキャンとイベント発生確認の間隔
+ *  @param error    エラーが発生した場合、詳細情報の NSError オブジェクトを格納する。成功した場合は nil が格納される。
+ *
+ *  @return YES:成功 NO:失敗
+ */
+- (BOOL)startScanWithSchedule:(JBCPEventSchedule)schedule error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 
 /**
@@ -111,7 +142,7 @@
  *
  *  @return YES:成功 NO:失敗
  */
-- (BOOL)stopScan:(NSError **)error;
+- (BOOL)stopScan:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 
 /**
@@ -121,7 +152,7 @@
  *
  *  @return デバイス固有の識別子を返す。
  */
-- (NSString *)getDeviceIdentifier:(NSError **)error;
+- (NSString * _Nullable)getDeviceIdentifier:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  *  アプリケーション・端末に保存しているBeacappSDKで必要なアクティベーション情報を消去する。
@@ -147,7 +178,7 @@
  *
  *  @return YES:成功 NO:失敗
  */
-- (BOOL)setAdditionalLog:(NSString *)value error:(NSError **)error;
+- (BOOL)setAdditionalLog:(NSString * _Nullable)value error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  *  ログのカスタム領域に追加する文字列を設定しログ出力を行う。
@@ -164,6 +195,6 @@
  *
  *  @return YES:成功 NO:失敗
  */
-- (BOOL)customLog:(NSString *)value error:(NSError **)error;
+- (BOOL)customLog:(NSString * _Nonnull)value error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 @end

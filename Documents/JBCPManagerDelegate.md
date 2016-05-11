@@ -8,6 +8,7 @@
 - ビーコンイベントの発火
 - 位置情報サービスの利用許可状況、Bluetoothの状態通知
 - 位置情報の取得、ビーコンの監視・レンジング時等のエラー通知
+- ビーコンレンジングイベントのコールバック(BETA)
 
 ### メソッド
 
@@ -16,12 +17,13 @@
     - manager:fireEvent:
     - manager:didUpdateMonitoringStatus:peripheralState:
     - manager:didFailWithError:
+    - manager:didRangedBeacon: (BETA)
 
-##メソッド
+## メソッド
 
 ### (Optional) - manager:shouldUpdateEvents:
 
-		- (BOOL)manager:(JBCPManager *)manager shouldUpdateEvents:(NSDictionary *)info
+		- (BOOL)manager:(JBCPManager * _Nonnull)manager shouldUpdateEvents:(NSDictionary * _Nullable)info
 
 イベント更新するかどうかをSDK利用者に問い合わせるためのdelegateメソッド。  
 JBCPManager#startUpdateEvents がコールされると本関数がデリゲートされる。  
@@ -61,7 +63,7 @@ info の alreadyNewest が 1 の場合でも YES を返却することで強制�
 
 ### (Required) - manager:didFinishUpdateEvents:
 
-		- (void)manager:(JBCPManager *)manager didFinishUpdateEvents:
+		- (void)manager:(JBCPManager * _Nonnull)manager didFinishUpdateEvents:(NSError * _Nullable)error
 
 イベント更新が完了すると、このdelegateメソッドがコールされる。
 エラー発生時にもコールされ、その場合は error に詳細情報が格納される。
@@ -79,7 +81,7 @@ JBCPManager のインスタンス
 ### (Required) - manager:fireEvent:
 
 
-		- (void)manager:(JBCPManager *)manager fireEvent:(NSDictionary *)event
+		- (void)manager:(JBCPManager * _Nonnull)manager fireEvent:(NSDictionary * _Nonnull)event
 
 ビーコンを受信し、条件に合致すると、このdelegateメソッドがコールされる。
 event に受信したビーコン情報、トリガーの条件、実行すべきアクションを辞書形式で格納する。
@@ -151,7 +153,7 @@ JBCPManager のインスタンス
 
 ### (Optional) - manager:didUpdateMonitoringStatus:peripheralState:
 
-		-(void)manager:(JBCPManager*)manager didUpdateMonitoringStatus:(CLAuthorizationStatus)authrizationStatus peripheralState:(CBPeripheralManagerState)peripheralState;
+		-(void)manager:(JBCPManager * _Nonnull)manager didUpdateMonitoringStatus:(CLAuthorizationStatus)authrizationStatus peripheralState:(CBPeripheralManagerState)peripheralState
 
 位置情報サービスの許可状態、端末Bluetooth状態を検知し場合、このdelegateメソッドがコールされる。
 
@@ -169,7 +171,7 @@ Bluetoothのステータス
 
 ### (Optional) - manager:didFailWithError:
 
-		-(void)manager:(JBCPManager*)manager didFailWithError:(NSError*)error;
+		-(void)manager:(JBCPManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error
 
 CLLocationManagerを利用した位置情報サービスの利用、Beaconの監視・レンジング実行時にエラーが発生した場合に、このdelegateメソッドがコールされる。
 
@@ -179,3 +181,19 @@ JBCPManagerのインスタンス
 
 - error
 エラーが発生した場合、詳細情報のNSErrorオブジェクトを格納する。(CLError）
+
+-------
+
+### (Optional) - manager:didRangedBeacon:
+
+      -(void)manager:(JBCPManager * _Nonnull)manager didRangedBeacon:(NSArray<CLBeacon *> * _Nullable)beacons
+
+!!! BETA !!!
+iBeaconのエリア内でのiBeaconの検知状況をおおよそ1秒毎に通知する。この関数は、iOSの標準のiBeacon検知時のときと同様の動きをする。
+
+#### パラメータ
+- manager
+JBCPManagerのインスタンス
+
+- beacons
+検知しているiBeaconの配列オブジェクトを格納する。

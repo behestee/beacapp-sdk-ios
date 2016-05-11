@@ -1,9 +1,10 @@
 //
 //  JBCPError.h
-//  BeacappSDKforiOS version1.0.0
+//  BeacappSDKforiOS version1.3.0
 //
 //  Created by Akira Hayakawa on 2014/11/11.
-//  Copyright (c) 2014年 JMA Systems Corp. All rights reserved.
+//  Update by Akira Hayakawa on 2016/05/11
+//  Copyright (c) 2016年 JMA Systems Corp. All rights reserved.
 //
 
 #ifndef BeacappSDK_JPCPError_h
@@ -23,6 +24,7 @@ typedef NS_ENUM(NSUInteger, JBCPCode) {
     JBCPCodeInvalidData = 1009, // データ不整合
     JBCPCodeCannotStartLocation = 1010, // 位置情報サービスが開始できない
     JBCPCodeAWSError = 1011, // AWSでエラーが発生した
+    JBCPCodeAlreadyScanning = 1012, // すでにビーコンのスキャンを開始している
     JBCPCodeUnKnownError = 9999 // UnknownError
 };
 

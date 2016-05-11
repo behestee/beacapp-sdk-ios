@@ -1,4 +1,4 @@
-# Beacapp SDK for iOS Version 1.2.0
+# Beacapp SDK for iOS Version 1.3.0
 ## はじめに
 [Beacapp](http://www.beacapp.com)で登録したコンテンツをiOSで利用するためのSDKです。
 
@@ -28,7 +28,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 ## SDKの導入　（ [CocoaPods](http://cocoapods.org)　を利用する）
 **Podfile**　に下記の一行を追加するだけでインストール可能です:
 
-バージョン1.2.0では、cocoapods 0.38.2 の利用をお願い致します。
+バージョン1.3.0では、cocoapods 0.39.0 の利用をお願い致します。
 
     pod "BeacappSDKforiOS"
 
@@ -124,8 +124,10 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 	| キー名　　|
 	|---------------|
 	|NSLocationAlwaysUsageDescription|
-
 	** BeacappSDKfoiOSでは 位置情報サービスの利用許可種類としてWhenInUseを推奨しています **
+
+	また、CMSと通信を行うため、AWS SDKが説明する以下を適用してください。
+	 - [ATS(Apple Transport Security)の設定](https://github.com/aws/aws-sdk-ios/tree/2.3.6#preparing-your-apps-for-ios-9)
 
 8. manager:fireEvent: のイベント情報ハンドリング方法サンプル
 	イベントが発火した際に、BeacappSDKforiOSからアプリケーション側に通知されるデリゲートメソッドにおけるイベント情報のハンドリング方法のサンプルを示します。
@@ -239,8 +241,8 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 ## 製作者
 
-- jena co. ltd.
-- JMAS Systems Corp,.
+- [jena co. ltd.](http://www.jena.ne.jp)
+- [JMAS Systems Corp,.](https://www.jmas.co.jp)
 
 ## ライセンス
 

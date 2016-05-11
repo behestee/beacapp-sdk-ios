@@ -29,6 +29,11 @@ Beacapp では以下のコードを使用する。
 |1006 | JBCPCodeInvalidSDKVersion         |SDKバージョン違い|
 |1007 | JBCPCodeNeedsDelegateSet          |デリゲート未定義|
 |1008 | JBCPCodeInvalidBackgroundRunning  | バックグランド実行は出来ない|
+|1009 | JBCPCodeInvalidData               | データ不整合|
+|1010 | JBCPCodeCannotStartLocation       |位置情報サービスが開始できない|
+|1011 | JBCPCodeAWSError                  |AWSでエラーが発生した|
+|1012 | JBCPCodeAlreadyScanning           |すでにビーコンのスキャンを開始している|
+|9999 | JBCPCodeUnKnownError              |原因不明のエラーが発生した|
 
 JBCPCodeInvalidBackgroundRunning = 1008 //バックグラウンド実行はできない
 define で定義された値は JBCPError.h に定義されている。
