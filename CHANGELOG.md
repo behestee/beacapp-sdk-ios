@@ -1,4 +1,8 @@
 # BeacappSDKforiOS CHANGELOG
+## 1.3.1 (May 12, 2016)
+Features:
+- アプリケーションがバックグランド状態でビーコンのエリアイン／アウトイベントがiOSから通知された際のイベント発火確認のための処理を向上
+
 ## 1.3.0 (May 11, 2016)
 Features:
 - [AWS SDK iOS Version 2.3.6](https://github.com/aws/aws-sdk-ios/tree/2.3.6)への対応
