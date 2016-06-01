@@ -124,7 +124,11 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 	| キー名　　|
 	|---------------|
 	|NSLocationAlwaysUsageDescription|
-	** BeacappSDKfoiOSでは 位置情報サービスの利用許可種類としてWhenInUseを推奨しています **
+	**BeacappSDKfoiOSでは 位置情報サービスの利用許可種類としてAlwaysUseを推奨しています**
+	
+	**v1.3.1現在では、WhenInUseの場合、Beacappでは位置情報サービス利用許可申請アラートを自動で表示することはありません。**
+	
+	**WhenInUseを利用する場合は、SDKを組み込むアプリ側でCLLocationManager -(void)requestWhenInUseAuthorizationを呼び出す必要があります。**
 
 	また、CMSと通信を行うため、AWS SDKが説明する以下を適用してください。
 	 - [ATS(Apple Transport Security)の設定](https://github.com/aws/aws-sdk-ios/tree/2.3.6#preparing-your-apps-for-ios-9)
