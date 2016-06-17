@@ -1,4 +1,17 @@
 # BeacappSDKforiOS CHANGELOG
+## 1.3.2 (June 17, 2016)
+Features:
+- アプリケーションの位置情報サービス利用許可タイプがWhenInUseの場合に対応。ただし、WhenInUseの場合はiBeaconのEnterRegion, ExitRegionは検知できなくなります。
+
+Bugfix:
+- Beacapp管理画面において、iBeaconの登録でUUIDが小文字の場合にイベントが発火しないことを修正しました。
+- アプリケーション側で本SDKとは別にCLCircleRegionによるリージョン監視を行っている場合にExceptionが発生することを修正しました。
+  ただし、アプリケーション側で本SDKとは別にリージョン監視を行う場合、CLLocationManagerの仕様によりCLLocationManagerDelegateの関連メソッドに対して本SDKで監視しているiBeaconのリージョン情報も通知される可能性があります。
+  また、iOSのアプリケーション内で観測できるリージョンの数には制限があります。（最大20個）
+  本SDKではBeacapp管理画面において登録・設定されたアプリケーションと関連するiBeaconのUUIDのパターン数を観測するようにしています。
+  （iBeaconのUUIDが３種類必要なときは3つを観測対象として登録します。）
+  アプリケーション側で観測するリージョンの数と本SDK側で観測するiBeaconのリージョンの数に注意してください。
+
 ## 1.3.1 (May 12, 2016)
 Features:
 - アプリケーションがバックグランド状態でビーコンのエリアイン／アウトイベントがiOSから通知された際のイベント発火確認のための処理を向上

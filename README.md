@@ -1,4 +1,4 @@
-# Beacapp SDK for iOS Version 1.3.1
+# Beacapp SDK for iOS Version 1.3.2
 ## はじめに
 [Beacapp](http://www.beacapp.com)で登録したコンテンツをiOSで利用するためのSDKです。
 
@@ -28,7 +28,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 ## SDKの導入　（ [CocoaPods](http://cocoapods.org)　を利用する）
 **Podfile**　に下記の一行を追加するだけでインストール可能です:
 
-バージョン1.3.0では、cocoapods 0.39.0 の利用をお願い致します。
+バージョン1.3.0からは、cocoapods 0.39.0 の利用をお願い致します。
 
     pod "BeacappSDKforiOS"
 
@@ -124,11 +124,10 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 	| キー名　　|
 	|---------------|
 	|NSLocationAlwaysUsageDescription|
+
 	**BeacappSDKfoiOSでは 位置情報サービスの利用許可種類としてAlwaysUseを推奨しています**
-	
-	**v1.3.1現在では、WhenInUseの場合、Beacappでは位置情報サービス利用許可申請アラートを自動で表示することはありません。**
-	
-	**WhenInUseを利用する場合は、SDKを組み込むアプリ側でCLLocationManager -(void)requestWhenInUseAuthorizationを呼び出す必要があります。**
+
+	**v1.3.2現在では、WhenInUseの場合、Beacappでは位置情報サービス利用許可申請アラートを自動で表示いたします**
 
 	また、CMSと通信を行うため、AWS SDKが説明する以下を適用してください。
 	 - [ATS(Apple Transport Security)の設定](https://github.com/aws/aws-sdk-ios/tree/2.3.6#preparing-your-apps-for-ios-9)
@@ -238,6 +237,17 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 				// Your Code
 		}
 
+10. アプリケーション側でCoreLocationを利用する場合
+
+ アプリケーション側で本SDKとは別にCLCircleRegionによるリージョン監視を行っている場合は以下にに注意してください。
+
+ アプリケーション側で本SDKとは別にリージョン監視を行う場合、CLLocationManagerの仕様によりCLLocationManagerDelegateの関連メソッドに対して本SDKで監視しているiBeaconのリージョン情報も通知される可能性があります。
+
+ また、iOSのアプリケーション内で観測できるリージョンの数には制限があります。（最大20個）
+
+ 本SDKではBeacapp管理画面において登録・設定されたアプリケーションと関連するiBeaconのUUIDのパターン数を観測するようにしています。（iBeaconのUUIDが３種類必要なときは3つを観測対象として登録します。）
+
+ アプリケーション側で観測するリージョンの数と本SDK側で観測するiBeaconのリージョンの数に注意してください。
 
 
 ## ドキュメント
