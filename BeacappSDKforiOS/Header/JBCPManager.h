@@ -1,9 +1,9 @@
 //
 //  JBCPManager.h
-//  BeacappSDKforiOS version1.3.2
+//  BeacappSDKforiOS version1.4.0
 //
 //  Created by Akira Hayakawa on 2014/11/11.
-//  Update by Akira Hayakawa on 2016/06/17
+//  Update by Akira Hayakawa on 2016/08/09
 //  Copyright (c) 2016年 JMA Systems Corp. All rights reserved.
 //
 
@@ -13,7 +13,6 @@
 @class AWSTask;
 
 /**
- *  !!! BETA !!!
  *  ビーコンイベント検知間隔の設定
  */
 typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
@@ -61,6 +60,24 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
 +(JBCPManager * _Nonnull)sharedManager;
 
 /**
+ *  !!! BETA !!!
+ *  BeacappAPIのURLを設定する。
+ *  api.beacapp.com以外のBeacappを使用する場合にのみ設定する。
+ *  これを利用する場合は、JBCPManager / + sharedManager　の前に利用すること。
+ *
+ *  @param url 設定するURL
+ */
++ (void)setApiHostUrl:(NSString* _Nonnull) url;
+
+/**
+ *  !!! BETA !!!
+ *  BeacappAPIのURLを取得する。
+ *
+ *  @return BeacappAPIのURL
+ */
++ (NSString* _Nonnull)getApiHostUrl;
+
+/**
  *  SDKの初期化をおこなう。
  *  未アクティベート時にはアクティベート処理を開始する。
  *  本関数は同期型であり、アクティベート処理が完了するまでブロックする。
@@ -96,7 +113,7 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
 
 
 /**
- *  !!! version 1.3では利用不可 !!!
+ *  !!! version 1.4.0では利用不可 !!!
  *  コンテンツデータの更新を開始する。
  *  コンテンツデータには、SDKで利用する画像、動画などが格納される。
  *  delegate がセットされていない場合エラー終了する。 更新処理の進捗と完了通知は delegate にセットされた JBCPManagerDelegate を実装したクラスへコールバックされる。
@@ -122,7 +139,6 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
 - (BOOL)startScan:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
- *  !!! BETA !!!
  *  iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドスレッドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
  *  iBeaconの監視は、UUIDごとに実行される。iOSの制約上、監視すべきUUIDが20個以上の場合はこれを実行することができない。
  *  すでにスキャンが開始されている場合は”スキャンとイベント発生確認の間隔”の変更は実行されない。変更する場合は一度 - (BOOL)stopScan:(NSError * _Nullable __autoreleasing * _Nullable)error を成功させる必要がある。
@@ -134,6 +150,21 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
  */
 - (BOOL)startScanWithSchedule:(JBCPEventSchedule)schedule error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
+/**
+ *  !!! BETA !!!
+ *  iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドスレッドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
+ *  位置情報取得サービスの利用許可タイプが AlwaysUseの場合においてiBeaconのスキャンを開始と同時にレンジングの開始も行うかどうかを設定できる。
+ *  iBeaconの監視は、UUIDごとに実行される。iOSの制約上、監視すべきUUIDが20個以上の場合はこれを実行することができない。
+ *  すでにスキャンが開始されている場合は”スキャンとイベント発生確認の間隔”の変更は実行されない。変更する場合は一度 - (BOOL)stopScan:(NSError * _Nullable __autoreleasing * _Nullable)error を成功させる必要がある。
+ *
+ *  @param schedule スキャンとイベント発生確認の間隔
+ *  @param ranging  スキャン開始と同時にレンジングを行うかどうか
+ *  @param error    エラーが発生した場合、詳細情報の NSError オブジェクトを格納する。成功した場合は nil が格納される。
+ *
+ *  @return YES:成功 NO:失敗
+ */
+
+- (BOOL)startScanWithSchedule:(JBCPEventSchedule)schedule withRanging:(BOOL)ranging error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
  *  iBeacon デバイスのスキャンを停止する。

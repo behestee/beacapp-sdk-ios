@@ -1,4 +1,17 @@
 # BeacappSDKforiOS CHANGELOG
+## 1.4.0 (Sep 21, 2016)
+Features:
+- JBCPEventSchedule、JBCPManager / - startScanWithSchedule: error:　APIを正式提供にしました。
+- JBCPManagerDelegate / - manager:didRangedBeacon:　デリゲートメソッドを正式提供にしました。
+- BETA提供用のAPIを公開
+  - イベント発火確認のための検知開始APIにおいて、iBeaconのスキャン開始と同時にレンジングも行うかどうかを設定可能なAPI
+  - BeacappAPIのURLを設定/取得可能にするAPI
+
+Bugfix:
+- Beacappサーバーとの通信処理や認証処理の不具合を修正しました。
+- 多くのイベント情報が登録された際にアップデートイベントができない不具合を修正しました。
+- ネットワーク接続ができない状態の際にログデータの送信を見送るように修正しました。
+
 ## 1.3.2 (June 17, 2016)
 Features:
 - アプリケーションの位置情報サービス利用許可タイプがWhenInUseの場合に対応。ただし、WhenInUseの場合はiBeaconのEnterRegion, ExitRegionは検知できなくなります。

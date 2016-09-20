@@ -29,11 +29,10 @@
 ### 定義
 ----
 
-#### JBCPEventSchedule (BETA)
+#### JBCPEventSchedule
 
 ビーコンイベント検知間隔の設定を行うための定義。
 下記の - startScanWithSchedule: error:メソッドで利用する。
-BETA提供。
 
   - JBCPEventScheduleFast : おおよそ2秒間隔でイベントの検知を実行する
   - JBCPEventScheduleDefault : おおよそ5秒間隔でイベントの検知を実行する
@@ -46,12 +45,15 @@ BETA提供。
     -initializeWithRequestToken: secretKey: options: error:
     - startUpdateEvents:
     - startScan:
-    - startScanWithSchedule: error: (BETA)
+    - startScanWithSchedule: error:
+    - startScanWithSchedule : withRanging : error: (BETA)
     - stopScan:
     - getDeviceIdentifier:
     - clearActivationData
     - setAdditonalLog: error:
     - customLog: error:
+    + setApiHostUrl: (BETA)
+    + getApiHostUrl (BETA)
 
 ## プロパティ
 
@@ -151,11 +153,10 @@ YES:成功 NO:失敗
 
 -----
 
-### - startScanWithSchedule: error: (BETA)
+### - startScanWithSchedule: error:
 
     -  (BOOL)startScanWithSchedule:(JBCPEventSchedule)schedule error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
-!!! BETA !!!
 iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドスレッドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
 iBeaconの監視は、UUIDごとに実行される。iOSの制約上、監視すべきUUIDが20個以上の場合はこれを実行することができない。
 すでにスキャンが開始されている場合は”スキャンとイベント発生確認の間隔”の変更は実行されずYESを返却する(JBCPCodeAlreadyScanningのエラーが格納される)。
@@ -173,6 +174,31 @@ YES:成功 NO:失敗
 
 -----
 
+### (BETA) - startScanWithSchedule : withRanging : error:
+
+    - (BOOL)startScanWithSchedule:(JBCPEventSchedule)schedule withRanging:(BOOL)ranging error:(NSError * _Nullable __autoreleasing * _Nullable)error;
+
+!!! BETA !!!
+
+iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドスレッドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
+位置情報取得サービスの利用許可タイプが AlwaysUseの場合においてiBeaconのスキャンを開始と同時にレンジングの開始も行うかどうかを設定できる。
+iBeaconの監視は、UUIDごとに実行される。iOSの制約上、監視すべきUUIDが20個以上の場合はこれを実行することができない。
+すでにスキャンが開始されている場合は”スキャンとイベント発生確認の間隔”の変更は実行されない。変更する場合は一度 - (BOOL)stopScan:(NSError * _Nullable __autoreleasing * _Nullable)error を成功させる必要がある。
+
+#### パラメータ
+- schedule
+ スキャンとイベント発生確認の間隔
+
+- ranging
+ スキャン開始と同時にレンジングを行うかどうか
+
+- error
+ エラーが発生した場合、詳細情報の NSError オブジェクトを格納する。成功した場合は nil が格納される。
+
+#### 戻り値
+YES:成功 NO:失敗
+
+-----
 
 ### - stopScan:
 
@@ -261,3 +287,34 @@ YES:成功 NO:失敗
 
 ### 戻り値
   ログ送信の成功可否
+
+----
+
+### (BETA) + setApiHostUrl:
+
+      + (void)setApiHostUrl:(NSString* _Nonnull) url
+
+!!! BETA !!!
+
+BeacappAPIのURLを設定する。
+api.beacapp.com以外のBeacappを使用する場合にのみ設定する。
+これを利用する場合は、JBCPManager + sharedManager　の前に利用すること。
+
+#### パラメータ
+- url
+  BeacappAPIのURLを設定する。
+
+  例) https://api.yourcustombeacappapi.com/api/
+
+----
+
+### (BETA) + getApiHostUrl
+
+      + (NSString* _Nonnull)getApiHostUrl
+
+!!! BETA !!!
+
+BeacappAPIのURLを取得する。
+
+#### 戻り値
+BeacappAPIのURL

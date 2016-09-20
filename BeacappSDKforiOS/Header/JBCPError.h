@@ -1,9 +1,9 @@
 //
 //  JBCPError.h
-//  BeacappSDKforiOS version1.3.2
+//  BeacappSDKforiOS version1.4.0
 //
 //  Created by Akira Hayakawa on 2014/11/11.
-//  Update by Akira Hayakawa on 2016/06/17
+//  Update by Akira Hayakawa on 2016/08/09
 //  Copyright (c) 2016年 JMA Systems Corp. All rights reserved.
 //
 

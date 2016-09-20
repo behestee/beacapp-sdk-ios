@@ -1,9 +1,9 @@
 //
 //  JBCPManagerDelegate.h
-//  BeacappSDKforiOS version1.3.2
+//  BeacappSDKforiOS version1.4.0
 //
 //  Created by Akira Hayakawa on 2014/11/11.
-//  Update by Akira Hayakawa on 2016/06/17
+//  Update by Akira Hayakawa on 2016/08/09
 //  Copyright (c) 2016年 JMA Systems Corp. All rights reserved.
 //
 
@@ -27,7 +27,7 @@
 
 
 /**
- *  !!! version1.3では利用不可 !!!
+ *  !!! version1.4.0では利用不可 !!!
  *  イベント更新の進捗コールバック。 このコールバックは JBCPManager の startUpdateEvents が呼ばれるとコールされる。 プログレスバーの表示などをおこないたい場合に本関数を使用する。
  *
  *  @param manager JBCPManager のインスタンス
@@ -47,7 +47,7 @@
 
 
 /**
- *  !!! version1.3では利用不可 !!!
+ *  !!! version1.4.0では利用不可 !!!
  *  コンテンツ更新するかどうかをSDK利用者に問い合わせるためのコールバック。JBCPManager#startUpdateContents がコールされると本関数がコールバックされる。利用者は戻り値 YES or NO を返却することでコンテンツを更新するかどうかを選択可能とする。また、本関数を定義しない場合はデフォルトの動作を行う。引数 info には、コンテンツ更新するかどうかの情報が辞書形式で格納される。
  *
  *  @param manager JBCPManager のインスタンス
@@ -60,7 +60,7 @@
 
 
 /**
- *  !!! version1.3では利用不可 !!!
+ *  !!! version1.4.0では利用不可 !!!
  *  コンテンツ更新の進捗コールバック。 このコールバックは JBCPManager の startUpdateContents が呼ばれるとコールされる。 プログレスバーの表示などをおこないたい場合に本関数を使用する。
  *
  *  @param manager JBCPManager のインスタンス
@@ -71,7 +71,7 @@
 
 
 /**
- *  !!! version1.3では利用不可 !!!
+ *  !!! version1.4.0では利用不可 !!!
  *  コンテンツ更新が完了すると、このコールバック関数がコールされる。 エラー発生時にもコールされ、その場合は error に詳細情報が格納される。
  *
  *  @param manager JBCPManager のインスタンス
@@ -107,7 +107,6 @@
 -(void)manager:(JBCPManager * _Nonnull)manager didFailWithError:(NSError * _Nullable)error;
 
 /**
- *  !!! BETA !!!
  *  iBeaconのエリア内でのiBeaconの検知状況をおおよそ1秒毎に通知する。この関数は、iOSの標準のiBeacon検知時のときと同様の動きをする。
  *
  *  @param manager JBCPManagerのインスタンス

@@ -1,4 +1,4 @@
-# Beacapp SDK for iOS Version 1.3.2
+# Beacapp SDK for iOS Version 1.4.0
 ## はじめに
 [Beacapp](http://www.beacapp.com)で登録したコンテンツをiOSで利用するためのSDKです。
 
@@ -127,7 +127,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 	**BeacappSDKfoiOSでは 位置情報サービスの利用許可種類としてAlwaysUseを推奨しています**
 
-	**v1.3.2現在では、WhenInUseの場合、Beacappでは位置情報サービス利用許可申請アラートを自動で表示いたします**
+	**v1.4.0現在では、WhenInUseの場合、Beacappでは位置情報サービス利用許可申請アラートを自動で表示いたします**
 
 	また、CMSと通信を行うため、AWS SDKが説明する以下を適用してください。
 	 - [ATS(Apple Transport Security)の設定](https://github.com/aws/aws-sdk-ios/tree/2.3.6#preparing-your-apps-for-ios-9)

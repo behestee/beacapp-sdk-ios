@@ -17,7 +17,7 @@
     - manager:fireEvent:
     - manager:didUpdateMonitoringStatus:peripheralState:
     - manager:didFailWithError:
-    - manager:didRangedBeacon: (BETA)
+    - manager:didRangedBeacon:
 
 ## メソッド
 
@@ -188,7 +188,6 @@ JBCPManagerのインスタンス
 
       -(void)manager:(JBCPManager * _Nonnull)manager didRangedBeacon:(NSArray<CLBeacon *> * _Nullable)beacons
 
-!!! BETA !!!
 iBeaconのエリア内でのiBeaconの検知状況をおおよそ1秒毎に通知する。この関数は、iOSの標準のiBeacon検知時のときと同様の動きをする。
 
 #### パラメータ
