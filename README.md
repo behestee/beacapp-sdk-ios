@@ -1,4 +1,4 @@
-# Beacapp SDK for iOS Version 1.4.0
+# Beacapp SDK for iOS Version 2.0.0
 ## はじめに
 [Beacapp](http://www.beacapp.com)で登録したコンテンツをiOSで利用するためのSDKです。
 
