@@ -30,7 +30,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
 バージョン1.3.0からは、cocoapods 0.39.0 の利用をお願い致します。
 
-    pod "BeacappSDKforiOS"
+    pod "BeacappSDKforiOS" :tag => '2.0.0beta'
 
 ## SDKの使い方
 1. ヘッダーをインポートします
