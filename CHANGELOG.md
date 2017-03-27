@@ -1,4 +1,7 @@
 # BeacappSDKforiOS CHANGELOG
+## 2.0.0 (Mar 27, 2017)
+Beacon一覧の取得元をDynamoDBからCloudFrontに変更しました。
+
 ## 1.4.0 (Sep 21, 2016)
 Features:
 - JBCPEventSchedule、JBCPManager / - startScanWithSchedule: error:　APIを正式提供にしました。
