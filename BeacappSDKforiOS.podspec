@@ -32,7 +32,6 @@ Pod::Spec.new do |s|
   s.dependency "AWSCore", '2.3.6'
   s.dependency "AWSDynamoDB", '2.3.6'
   s.dependency "AWSKinesis", '2.3.6'
-  s.dependency "AWSS3", '2.3.6'
   s.dependency "FMDB"
 
 end

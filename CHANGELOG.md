@@ -1,5 +1,6 @@
 # BeacappSDKforiOS CHANGELOG
 ## 2.0.0 (April 18, 2017)
+- AWSS3の参照を削除しました。
 - Beacon情報などのCMSとの連携を変更しました。
 - JBCPManagerDelegateの位置情報及びBluetoothの状態通知メソッドを変更しました。
 
