@@ -1,4 +1,16 @@
 # BeacappSDKforiOS CHANGELOG
+## 2.0.0 (April 18, 2017)
+- Beacon情報などのCMSとの連携を変更しました。
+- JBCPManagerDelegateの位置情報及びBluetoothの状態通知メソッドを変更しました。
+
+  変更前
+
+      -(void)manager:(JBCPManager * _Nonnull)manager didUpdateMonitoringStatus:(CLAuthorizationStatus)authrizationStatus peripheralState:(CBPeripheralManagerState)peripheralState;
+
+  変更後：CBPeripheralManagerStateからCBCentralManagerStateに変更）
+
+       -(void)manager:(JBCPManager * _Nonnull)manager didUpdateMonitoringStatus:(CLAuthorizationStatus)authrizationStatus centralState:(CBCentralManagerState)centralState;
+
 ## 1.4.0 (Sep 21, 2016)
 Features:
 - JBCPEventSchedule、JBCPManager / - startScanWithSchedule: error:　APIを正式提供にしました。

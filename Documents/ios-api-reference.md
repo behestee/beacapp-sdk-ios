@@ -1,4 +1,4 @@
-Beacapp SDK for iOS Version 1.0.0 API Reference
+Beacapp SDK for iOS Version 2.0.0 API Reference
 =================================
 
 この資料は Beacapp SDK for iOS の APIリファレンスを記述する。

@@ -1,10 +1,10 @@
 //
 //  JBCPManager.h
-//  BeacappSDKforiOS version1.4.0
+//  BeacappSDKforiOS version2.0.0
 //
 //  Created by Akira Hayakawa on 2014/11/11.
-//  Update by Akira Hayakawa on 2016/08/09
-//  Copyright (c) 2016年 JMA Systems Corp. All rights reserved.
+//  Update by Akira Hayakawa on 2017/04
+//  Copyright (c) 2017年 JMA Systems Corp. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -60,7 +60,6 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
 +(JBCPManager * _Nonnull)sharedManager;
 
 /**
- *  !!! BETA !!!
  *  BeacappAPIのURLを設定する。
  *  api.beacapp.com以外のBeacappを使用する場合にのみ設定する。
  *  これを利用する場合は、JBCPManager / + sharedManager　の前に利用すること。
@@ -70,7 +69,6 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
 + (void)setApiHostUrl:(NSString* _Nonnull) url;
 
 /**
- *  !!! BETA !!!
  *  BeacappAPIのURLを取得する。
  *
  *  @return BeacappAPIのURL
@@ -94,7 +92,6 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
 -(BOOL)initializeWithRequestToken:(NSString * _Nonnull)requestToken secretKey:(NSString * _Nonnull)secretKey options:(NSDictionary * _Nullable)options error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 
-
 /**
  *  イベントデータの更新を開始する。 イベントデータには、ビーコンリスト、 イベント、トリガー、アクションなど Beacapp を動作するさせるために必要な情報である。delegate がセットされていない場合エラー終了する。 更新処理の進捗と完了通知は delegate にセットされた JBCPManagerDelegate を実装したクラスへコールバックされる。
  *  進捗コールバック関数は JBCPManagerDelegate の didProgressEvents がコールされる。(version1.0では利用不可）
@@ -110,22 +107,6 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
  *  @return YES:成功 NO:失敗
  */
 - (BOOL)startUpdateEvents:(NSError * _Nullable __autoreleasing * _Nullable)error;
-
-
-/**
- *  !!! version 1.4.0では利用不可 !!!
- *  コンテンツデータの更新を開始する。
- *  コンテンツデータには、SDKで利用する画像、動画などが格納される。
- *  delegate がセットされていない場合エラー終了する。 更新処理の進捗と完了通知は delegate にセットされた JBCPManagerDelegate を実装したクラスへコールバックされる。
- *  進捗コールバック関数は JBCPManagerDelegate の didProgressContents がコールされる。
- *  完了コールバック関数は JBCPManagerDelegate の didFinishUpdateContents がコールされる。
- *  エラー発生時には didFinishUpdateContents の error に詳細情報が格納される。 また、SDK利用者は JBCPManagerDelegate の shouldUpdateContents を定義する事で、強制的に更新するかどうかを選択する事も可能である。
- *
- *  @param error エラーが発生した場合、詳細情報の NSError オブジェクトを格納する。成功した場合は nil が格納される。
- *
- *  @return YES:成功 NO:失敗
- */
-- (BOOL)startUpdateContents:(NSError * _Nullable __autoreleasing * _Nullable)error __attribute__((unavailable("startUpdateContents: is unavailable in This Version")));
 
 
 /**
@@ -151,7 +132,6 @@ typedef NS_ENUM(NSUInteger, JBCPEventSchedule) {
 - (BOOL)startScanWithSchedule:(JBCPEventSchedule)schedule error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 /**
- *  !!! BETA !!!
  *  iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドスレッドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
  *  位置情報取得サービスの利用許可タイプが AlwaysUseの場合においてiBeaconのスキャンを開始と同時にレンジングの開始も行うかどうかを設定できる。
  *  iBeaconの監視は、UUIDごとに実行される。iOSの制約上、監視すべきUUIDが20個以上の場合はこれを実行することができない。

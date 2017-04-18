@@ -42,4 +42,4 @@ define で定義された値は JBCPError.h に定義されている。
 
 #### localizedDescription について
 
-メソッド localizedDescription を使用することでローカライズされたエラー文言が取得可能である。
+メソッド localizedDescription を使用することでエラー文言が取得可能である。

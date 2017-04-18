@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BeacappSDKforiOS"
-  s.version      = "1.4.0"
+  s.version      = "2.0.0"
   s.summary      = "iOS Library for Beacapp"
 
   s.homepage     = "http://www.beacapp.com"
@@ -8,14 +8,14 @@ Pod::Spec.new do |s|
   s.license      = {
     :type => 'Copyright',
     :text => <<-LICENSE
-      Copyright 2016 JMA Systems Corp., All Rights Reserved.
+      Copyright 2017 JMA Systems Corp., All Rights Reserved.
       LICENSE
   }
 
   s.author       = { "JMA Systems Corp.," => "Akira_Hayakawa@jmas.co.jp" }
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "https://github.com/JMASystems/beacapp-sdk-ios.git", :tag => "1.4.0" }
+  s.source       = { :git => "https://github.com/JMASystems/beacapp-sdk-ios.git", :tag => "2.0.0" }
   s.public_header_files = "BeacappSDKforiOS/Header/*.h"
   s.source_files =  'BeacappSDKforiOS/Header/*.h'
 
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.vendored_libraries = "BeacappSDKforiOS/staticLib/libBeacappSDKforiOS.a"
 
   s.frameworks = "CoreLocation", "CoreBluetooth","SystemConfiguration"
-  s.library   = "BeacappSDKforiOS"
+  s.libraries = 'z','BeacappSDKforiOS'
 
   s.requires_arc = true
 
@@ -34,6 +34,5 @@ Pod::Spec.new do |s|
   s.dependency "AWSKinesis", '2.3.6'
   s.dependency "AWSS3", '2.3.6'
   s.dependency "FMDB"
-  s.dependency "Reachability"
 
 end

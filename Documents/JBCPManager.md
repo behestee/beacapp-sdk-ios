@@ -46,14 +46,14 @@
     - startUpdateEvents:
     - startScan:
     - startScanWithSchedule: error:
-    - startScanWithSchedule : withRanging : error: (BETA)
+    - startScanWithSchedule : withRanging : error:
     - stopScan:
     - getDeviceIdentifier:
     - clearActivationData
     - setAdditonalLog: error:
     - customLog: error:
-    + setApiHostUrl: (BETA)
-    + getApiHostUrl (BETA)
+    + setApiHostUrl:
+    + getApiHostUrl
 
 ## プロパティ
 
@@ -174,11 +174,9 @@ YES:成功 NO:失敗
 
 -----
 
-### (BETA) - startScanWithSchedule : withRanging : error:
+### - startScanWithSchedule : withRanging : error:
 
     - (BOOL)startScanWithSchedule:(JBCPEventSchedule)schedule withRanging:(BOOL)ranging error:(NSError * _Nullable __autoreleasing * _Nullable)error;
-
-!!! BETA !!!
 
 iBeacon デバイスのスキャンを開始する。スキャンはバックグラウンドスレッドで行われ、イベント発生などの通知は delegate に登録されたコールバッククラスへコールバックされる。
 位置情報取得サービスの利用許可タイプが AlwaysUseの場合においてiBeaconのスキャンを開始と同時にレンジングの開始も行うかどうかを設定できる。
@@ -290,11 +288,10 @@ YES:成功 NO:失敗
 
 ----
 
-### (BETA) + setApiHostUrl:
+### + setApiHostUrl:
 
       + (void)setApiHostUrl:(NSString* _Nonnull) url
 
-!!! BETA !!!
 
 BeacappAPIのURLを設定する。
 api.beacapp.com以外のBeacappを使用する場合にのみ設定する。
@@ -308,11 +305,9 @@ api.beacapp.com以外のBeacappを使用する場合にのみ設定する。
 
 ----
 
-### (BETA) + getApiHostUrl
+### + getApiHostUrl
 
       + (NSString* _Nonnull)getApiHostUrl
-
-!!! BETA !!!
 
 BeacappAPIのURLを取得する。
 

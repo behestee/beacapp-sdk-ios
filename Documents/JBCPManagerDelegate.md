@@ -15,7 +15,7 @@
     - manager:shouldUpdateEvents:
     - manager:didFinishUpdateEvents:
     - manager:fireEvent:
-    - manager:didUpdateMonitoringStatus:peripheralState:
+    - manager:didUpdateMonitoringStatus:centralState:
     - manager:didFailWithError:
     - manager:didRangedBeacon:
 
@@ -98,7 +98,7 @@ event に格納されるデータのうち、Beacapp Web管理コンソールで
   |-------------|----------------------|
   |jbcp_open_image |画像がコンテンツとして設定されている          |
   |jbcp_open_url     |Web URLがコンテンツとして設定されている       |
-  |jbco_open_text   |テキスト情報がコンテンツとして設定されている       |
+  |jbcp_open_text   |テキスト情報がコンテンツとして設定されている       |
   |jbcp_custom_key_value       |カスタムデータが設定されている  |
 
   - jbcp_open_image の場合
@@ -124,7 +124,7 @@ event に格納されるデータのうち、Beacapp Web管理コンソールで
     キー text の値に テキスト情報 を文字列で定義
 
 	    "action_data" : {
-    	  "action" : "jbco_open_text",
+    	  "action" : "jbcp_open_text",
       	"text" : "hello beacapp world"
    	 }
 
@@ -151,9 +151,9 @@ JBCPManager のインスタンス
 
 -------
 
-### (Optional) - manager:didUpdateMonitoringStatus:peripheralState:
+### (Optional) - manager:didUpdateMonitoringStatus:centralState:
 
-		-(void)manager:(JBCPManager * _Nonnull)manager didUpdateMonitoringStatus:(CLAuthorizationStatus)authrizationStatus peripheralState:(CBPeripheralManagerState)peripheralState
+		-(void)manager:(JBCPManager * _Nonnull)manager didUpdateMonitoringStatus:(CLAuthorizationStatus)authrizationStatus centralState:(CBCentralManagerState)centralState
 
 位置情報サービスの許可状態、端末Bluetooth状態を検知し場合、このdelegateメソッドがコールされる。
 
@@ -164,7 +164,7 @@ JBCPManagerのインスタンス
 - authrizationStatus
 位置情報サービスの利用許可ステータス
 
-- peripheralState
+- centralState
 Bluetoothのステータス
 
 ------

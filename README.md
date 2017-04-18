@@ -1,4 +1,4 @@
-# Beacapp SDK for iOS Version 1.4.0
+# Beacapp SDK for iOS Version 2.0.0
 ## はじめに
 [Beacapp](http://www.beacapp.com)で登録したコンテンツをiOSで利用するためのSDKです。
 
@@ -28,9 +28,13 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 ## SDKの導入　（ [CocoaPods](http://cocoapods.org)　を利用する）
 **Podfile**　に下記の一行を追加するだけでインストール可能です:
 
-バージョン1.3.0からは、cocoapods 0.39.0 の利用をお願い致します。
+バージョン1.3.0からは、cocoapods 0.39.0 以上の利用をお願い致します。
 
     pod "BeacappSDKforiOS"
+
+- 注意：BeacappSDKforiOSはBitcode非対応です。Xcode のターゲット設定を変更してください。
+		
+	[Your App Target] - [Build Settings] - [Build Options] - "Enable Bitcode" -> No
 
 ## SDKの使い方
 1. ヘッダーをインポートします
