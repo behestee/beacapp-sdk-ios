@@ -1,10 +1,9 @@
-# Beacapp SDK for iOS Version 2.0.0
+# Beacapp SDK for iOS Version 2.2.0
 ## はじめに
 [Beacapp](http://www.beacapp.com)で登録したコンテンツをiOSで利用するためのSDKです。
 
 ## 概要
 BeacappSDKforiOSは、iOSアプリケーションにBeacappの機能を組み込むためのSDK（ソフトウェア開発キット）です。
-既存のiOSアプリケーション、これから製造するiOSアプリケーションにBeacappSDKforiOSを組み込み、必要な処理を実行するだけで ビーコンを検知して様々なアクションを実行することができます。
 
 BeacappSDKforiOSの主な機能は以下の通りです。
 
@@ -33,7 +32,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
     pod "BeacappSDKforiOS"
 
 - 注意：BeacappSDKforiOSはBitcode非対応です。Xcode のターゲット設定を変更してください。
-		
+
 	[Your App Target] - [Build Settings] - [Build Options] - "Enable Bitcode" -> No
 
 ## SDKの使い方
@@ -125,9 +124,10 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 	iOS8から位置情報サービスを利用するための実行許可の方式が変更となります。
 	iOSアプリケーションのinfo.plistに以下のキーを追加し、アプリケーションとして必要な説明文を追記してください。
 
-	| キー名　　|
-	|---------------|
-	|NSLocationAlwaysUsageDescription|
+	| キー名　　|  記載の必要があるVersion |
+	|---------------|------|
+	|NSLocationAlwaysUsageDescription|iOS8～|
+    |NSLocationAlwaysAndWhenInUsageDescription| iOS11～|
 
 	**BeacappSDKfoiOSでは 位置情報サービスの利用許可種類としてAlwaysUseを推奨しています**
 
@@ -253,13 +253,13 @@ BeacappSDKforiOSの主な機能は以下の通りです。
 
  アプリケーション側で観測するリージョンの数と本SDK側で観測するiBeaconのリージョンの数に注意してください。
 
-11. イベント検知ログをタイムスタンプ順に維持する方法  
+11. イベント検知ログをタイムスタンプ順に維持する方法
  AWSSDKの処理内容を変更することでイベント検知ログのタイムスタンプ順を維持します。以下の手順を行うとAWSSDKの処理内容を変更できます。
-  - 動作確認済み環境  
- AWSSDKのバージョン：2.5.2  
-  - 注意  
- ・AWSSDKのバージョン(2.5.2)以外のバージョンを使用する場合、正常に動作しない場合がございます。  
-  ・11.の処理を追加しても動作環境によりイベント検知ログがタイムスタンプ順に維持できないことがございます。  
+  - 動作確認済み環境
+ AWSSDKのバージョン：2.5.2
+  - 注意
+ ・AWSSDKのバージョン(2.5.2)以外のバージョンを使用する場合、正常に動作しない場合がございます。
+  ・11.の処理を追加しても動作環境によりイベント検知ログがタイムスタンプ順に維持できないことがございます。
 
   11-1.　作成しているアプリケーションの任意のクラス(AppDelegateなど)に以下のヘッダーをインポートします。
 
@@ -292,7 +292,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
   11-3.　以下のメソッドを11-1.で追加した同クラスの実装部(@implemention内)に追加します。
 
   		-(void)JCBPMethodSwizzling{
-      		static dispatch_once_t onceToken;    
+      		static dispatch_once_t onceToken;
       		dispatch_once(&onceToken, ^{
           		{
               		Method from = class_getInstanceMethod(AWSKinesis.class, @selector(putRecord:));
@@ -311,10 +311,10 @@ BeacappSDKforiOSの主な機能は以下の通りです。
       		});
   		}
 
-  11-4.　11-3.で追加したメソッド(JCBPMethodSwizzling)をSDKのアクティベートを行う前に呼び出します。    
+  11-4.　11-3.で追加したメソッド(JCBPMethodSwizzling)をSDKのアクティベートを行う前に呼び出します。
   		[self JCBPMethodSwizzling];
 
-  11-5.　サンプルコード　AppDelegateに追加したサンプルコードとなります。  
+  11-5.　サンプルコード　AppDelegateに追加したサンプルコードとなります。
   ・AppDelegate.h
   		#import <UIKit/UIKit.h>
   		#import <BeacappSDKforiOS/JBCPCore.h>
@@ -351,7 +351,7 @@ BeacappSDKforiOSの主な機能は以下の通りです。
      	return [self JCBPPutRecordsSwizzling:request];
  		}
  		@end
- 
+
  		@interface AppDelegate ()
 
  		@end

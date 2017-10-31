@@ -1,4 +1,13 @@
 # BeacappSDKforiOS CHANGELOG
+## 2.2.0 (October 31, 2017)
+Features:
+- NSLocationAlwaysAndWhenInUsageDescriptionに関する処理を追加しました。
+
+bugfix:
+- Beaconのスキャン開始・停止に関する内部処理を修正いたしました。
+　なお、この修正に伴うAPIの修正等はございません。
+
+
 ## 2.0.0 (April 18, 2017)
 - AWSS3の参照を削除しました。
 - Beacon情報などのCMSとの連携を変更しました。
